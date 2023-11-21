@@ -1,6 +1,3 @@
-/* config-overrides.js */
+const { override, useBabelRc } = require("customize-cra"); // Cu phap import commonjs
 
-module.exports = function override(config, env) {
-    //do stuff with the webpack config...
-    return config;
-};
+module.exports = override(useBabelRc());
