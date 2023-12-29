@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import 'tippy.js/dist/tippy.css';
 import Tippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faMagnifyingGlass, faSignIn, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '~/components/Button';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
@@ -27,7 +27,7 @@ function Header() {
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <Link to="/">
-                    <img src={images.logo} alt="logo" />
+                    <img src={images.logo} alt="TikTok" />
                 </Link>
 
                 <Tippy
@@ -59,7 +59,8 @@ function Header() {
                 </Tippy>
 
                 <div className={cx('action')}>
-                    <Button onClick={() => alert('123')}>Log in</Button>
+                    <Button text>Upload</Button>
+                    <Button primary>Log in</Button>
                 </div>
             </div>
         </header>
