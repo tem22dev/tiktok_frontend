@@ -5,21 +5,7 @@ import 'tippy.js/dist/tippy.css';
 import Tippy from '@tippyjs/react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faCircleXmark,
-    faCloudUpload,
-    faCoins,
-    faEarthEurope,
-    faEllipsisVertical,
-    faGear,
-    faInbox,
-    faMagnifyingGlass,
-    faMessage,
-    faSignOut,
-    faSpinner,
-    faUser,
-} from '@fortawesome/free-solid-svg-icons';
-import { faCircleQuestion, faKeyboard } from '@fortawesome/free-regular-svg-icons';
+import { faCircleXmark, faEllipsisVertical, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '~/components/Button';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
@@ -27,12 +13,26 @@ import AccountItem from '~/components/AccountItem';
 import styles from './Header.module.scss';
 import images from '~/assets/images';
 import Menu from '~/components/Popper/Menu';
+import {
+    FeedbackIcon,
+    GetCoinsIcon,
+    InboxIcon,
+    KeyboardIcon,
+    LanguageIcon,
+    LogoutIcon,
+    MessagesIcon,
+    ProfileIcon,
+    SearchIcon,
+    SettingIcon,
+    UploadIcon,
+} from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
         title: 'English',
-        icon: <FontAwesomeIcon icon={faEarthEurope} />,
+        icon: <LanguageIcon width="2rem" height="2rem" />,
         children: {
             title: 'Language',
             data: [
@@ -51,12 +51,12 @@ const MENU_ITEMS = [
     },
     {
         title: 'Feedback and held',
-        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        icon: <FeedbackIcon width="2rem" height="2rem" />,
         to: '/feedback',
     },
     {
         title: 'Keyboard shortcuts',
-        icon: <FontAwesomeIcon icon={faKeyboard} />,
+        icon: <KeyboardIcon width="2rem" height="2rem" />,
     },
 ];
 
@@ -83,23 +83,23 @@ function Header() {
     const userMenu = [
         {
             title: 'View profile',
-            icon: <FontAwesomeIcon icon={faUser} />,
+            icon: <ProfileIcon width="2rem" height="2rem" />,
             to: '/@hoaa',
         },
         {
             title: 'Get coins',
-            icon: <FontAwesomeIcon icon={faCoins} />,
+            icon: <GetCoinsIcon width="2rem" height="2rem" />,
             to: '/coin',
         },
         {
             title: 'Settings',
-            icon: <FontAwesomeIcon icon={faGear} />,
+            icon: <SettingIcon width="2rem" height="2rem" />,
             to: '/settings',
         },
         ...MENU_ITEMS,
         {
             title: 'Log out',
-            icon: <FontAwesomeIcon icon={faSignOut} />,
+            icon: <LogoutIcon width="2rem" height="2rem" />,
             to: '/logout',
             separate: true,
         },
@@ -135,7 +135,7 @@ function Header() {
                         <FontAwesomeIcon icon={faSpinner} className={cx('loading')} />
 
                         <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            <SearchIcon width="2.4rem" height="2.4rem" />
                         </button>
                     </div>
                 </HeadlessTippy>
@@ -143,33 +143,42 @@ function Header() {
                 <div className={cx('action')}>
                     {currentUser ? (
                         <>
-                            <Tippy delay={[0, 100]} content="Upload video">
-                                <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
-                                </button>
-                            </Tippy>
+                            <Button
+                                to={'/upload'}
+                                children="Upload"
+                                leftIcon={<UploadIcon width="2rem" height="2rem" />}
+                                outline
+                                className="btn-upload"
+                            />
                             <Tippy delay={[0, 100]} content="Messages">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faMessage} />
+                                    <MessagesIcon />
                                 </button>
                             </Tippy>
                             <Tippy delay={[0, 100]} content="Inbox">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faInbox} />
+                                    <InboxIcon width="3.2rem" height="3.2rem" />
                                 </button>
                             </Tippy>
                         </>
                     ) : (
                         <>
-                            <Button text>Upload</Button>
+                            <Button
+                                to={'/upload'}
+                                children="Upload"
+                                leftIcon={<UploadIcon width="2rem" height="2rem" />}
+                                outline
+                                className="btn-upload"
+                            />
                             <Button primary>Log in</Button>
                         </>
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 src="https://p9-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/ceb7cb3459ea9b0b9dcb190806cf6d06.jpeg?lk3s=a5d48078&x-expires=1709737200&x-signature=%2FkD%2B5NI9rLt6gsQW2MRHbWK6EPs%3D"
+                                fallback="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
                                 alt=""
                             />
                         ) : (

@@ -36,8 +36,9 @@
     input {
         flex: 1;
         height: 100%;
-        color: var(--back);
+        color: var(--text-color);
         caret-color: var(--primary);
+        font-family: 'TikTokFont', sans-serif;
         font-size: 1.6rem;
         font-weight: 400;
         background: transparent;
@@ -115,11 +116,17 @@
 }
 
 .action-btn {
+    display: flex;
+    align-items: center;
     font-size: 2.2rem;
-    font-size: #161823;
+    color: #161823;
     background-color: transparent;
-    padding: 4px 12px;
+    padding: 4px 8px;
     cursor: pointer;
+}
+
+.action-btn:nth-child(2) {
+    margin-left: 8px;
 }
 
 .user-avatar {
