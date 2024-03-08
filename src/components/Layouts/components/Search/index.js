@@ -52,6 +52,18 @@ function Search() {
         setShowResults(false);
     };
 
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue);
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
+
     return (
         <HeadlessTippy
             interactive={true}
@@ -74,7 +86,7 @@ function Search() {
                     value={searchValue}
                     placeholder="Search"
                     spellCheck={false}
-                    onChange={(e) => !e.target.value.startsWith(' ') && setSearchValue(e.target.value)}
+                    onChange={handleChange}
                     onFocus={() => setShowResults(true)}
                 />
                 {!!searchValue && !loading && (
@@ -84,7 +96,7 @@ function Search() {
                 )}
                 {loading && <FontAwesomeIcon icon={faSpinner} className={cx('loading')} />}
 
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={handleSubmit}>
                     <SearchIcon width="2.4rem" height="2.4rem" />
                 </button>
             </div>
